@@ -200,9 +200,11 @@ p {
 p img {
   padding: 0em 0.3em;
 }
+a,
 a:link,
 a:visited {
   color: #36B3D1;
+  text-decoration: underline;
 }
 a:link:hover,
 a:visited:hover {
@@ -218,19 +220,25 @@ a:visited:hover {
 #exchange {
   font-family: Times;
 }
-#exchange table {
+#exchange .sale-list .eth-amount {
+  margin-bottom: 10px;
+}
+#exchange .sale-list table {
   margin-top: 5px;
   border-spacing: 2px;
   border-collapse: separate;
 }
-#exchange table tr:nth-child(even) {
+#exchange .sale-list table tr:nth-child(even) {
   background: #ebebeb;
 }
-#exchange table tr:nth-child(odd) {
+#exchange .sale-list table tr:nth-child(odd) {
   background: #c7c7c7;
 }
-#exchange table td {
+#exchange .sale-list table td {
   padding: 2px 4px;
+}
+#exchange .sale-list table td.seller {
+  font-size: 12px;
 }
 #reference {
   font-style: italic;

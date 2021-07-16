@@ -41,9 +41,11 @@ p {
     }
 }
 
+a,
 a:link,
 a:visited {
-    color: #36B3D1;
+    color          : #36B3D1;
+    text-decoration: underline;
 }
 
 a:link:hover,
@@ -62,21 +64,31 @@ a:visited:hover {
 #exchange {
     font-family: Times;
 
-    table {
-        margin-top     : 5px;
-        border-spacing : 2px;
-        border-collapse: separate;
-
-        tr:nth-child(even) {
-            background: #ebebeb;
+    .sale-list {
+        .eth-amount {
+            margin-bottom: 10px;
         }
 
-        tr:nth-child(odd) {
-            background: #c7c7c7;
-        }
+        table {
+            margin-top     : 5px;
+            border-spacing : 2px;
+            border-collapse: separate;
 
-        td {
-            padding: 2px 4px;
+            tr:nth-child(even) {
+                background: #ebebeb;
+            }
+
+            tr:nth-child(odd) {
+                background: #c7c7c7;
+            }
+
+            td {
+                padding: 2px 4px;
+
+                &.seller {
+                    font-size: 12px;
+                }
+            }
         }
     }
 }
