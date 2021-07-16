@@ -136,13 +136,18 @@ export default class SaleList extends DomNode {
 
         const owner = await Wallet.loadAddress();
         if (this.loadCount === currentLoadCount) {
+
             if (owner === undefined) {
+                this.tbody.empty();
                 this.pleaseConnect = el("p", "Please Connect. ", el("a", "Connect", {
                     click: () => Wallet.connect(),
                 })).appendTo(this);
             } else {
+
                 const count = await VirtualNewLibertyStandardContract.getSaleCount();
                 if (this.loadCount === currentLoadCount) {
+                    this.tbody.empty();
+
                     for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
                         const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
                         if (this.loadCount !== currentLoadCount) {
