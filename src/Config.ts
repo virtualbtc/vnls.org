@@ -2,7 +2,11 @@ const INFURA_ID = "96ce12f4a29c44699587732ebf110b75";
 
 export default {
 
-    chainId: 42,
+    // Kovan
+    //chainId: 42,
+    // Mainnet
+    chainId: 1,
+
     infuraId: INFURA_ID,
 
     // Kovan
