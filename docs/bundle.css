@@ -240,6 +240,9 @@ a:visited:hover {
 #exchange .sale-list table td.seller {
   font-size: 12px;
 }
+#exchange .soldout {
+  margin-top: 20px;
+}
 #reference {
   font-style: italic;
 }

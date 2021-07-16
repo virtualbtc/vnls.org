@@ -57,6 +57,7 @@ export default class SaleList extends DomNode {
                 ),
                 this.tbody = el("tbody"),
             ),
+            el(".soldout", "All VBTC has been sold. Please wait for Uniswap listing."),
         );
 
         this.loadVBTCAmount();
