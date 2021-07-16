@@ -12,6 +12,7 @@ export default class SaleList extends DomNode {
     private ethAmount: DomNode;
 
     private loading: DomNode | undefined;
+    private pleaseConnect: DomNode | undefined;
     private tbody: DomNode;
     private loadCount = 0;
 
@@ -27,14 +28,16 @@ export default class SaleList extends DomNode {
                         const amount = prompt("Please enter VBTC amount.");
                         if (amount !== null) {
                             const allowance = await VirtualBitcoinContract.allowance(owner, VirtualNewLibertyStandardContract.address);
-                            const realAmount = utils.parseUnits(amount, VirtualBitcoinContract.decimals);
-                            if (allowance.lt(realAmount) === true) {
-                                alert("You need approve VBTC for Virtual New Liberty Standard.");
-                                await VirtualBitcoinContract.approve(VirtualNewLibertyStandardContract.address, realAmount);
-                            } else {
-                                const price = prompt("Please enter price (ETH).");
-                                if (price !== null) {
-                                    await VirtualNewLibertyStandardContract.sell(realAmount, utils.parseEther(price));
+                            if (allowance !== undefined) {
+                                const realAmount = utils.parseUnits(amount, VirtualBitcoinContract.decimals);
+                                if (allowance.lt(realAmount) === true) {
+                                    alert("You need approve VBTC for Virtual New Liberty Standard.");
+                                    await VirtualBitcoinContract.approve(VirtualNewLibertyStandardContract.address, realAmount);
+                                } else {
+                                    const price = prompt("Please enter price (ETH).");
+                                    if (price !== null) {
+                                        await VirtualNewLibertyStandardContract.sell(realAmount, utils.parseEther(price));
+                                    }
                                 }
                             }
                         }
@@ -60,6 +63,7 @@ export default class SaleList extends DomNode {
         this.loadSales();
 
         Wallet.on("connect", this.connectHandler);
+        VirtualBitcoinContract.on("wrongNetwork", this.wrongNetworkHandler);
         VirtualBitcoinContract.on("Transfer", this.transferHandler);
         VirtualNewLibertyStandardContract.on("wrongNetwork", this.wrongNetworkHandler);
         VirtualNewLibertyStandardContract.on("Sell", this.sellHandler);
@@ -127,12 +131,15 @@ export default class SaleList extends DomNode {
         this.loading?.delete();
         this.loading = el(".loading", "Loading...").appendTo(this);
 
+        this.pleaseConnect?.delete();
+        this.pleaseConnect = undefined;
+
         const owner = await Wallet.loadAddress();
         if (this.loadCount === currentLoadCount) {
             if (owner === undefined) {
-                this.append(el("p", "Please Connect. ", el("a", "Connect", {
+                this.pleaseConnect = el("p", "Please Connect. ", el("a", "Connect", {
                     click: () => Wallet.connect(),
-                })));
+                })).appendTo(this);
             } else {
                 const count = await VirtualNewLibertyStandardContract.getSaleCount();
                 if (this.loadCount === currentLoadCount) {
@@ -154,6 +161,7 @@ export default class SaleList extends DomNode {
 
     public delete(): void {
         Wallet.off("connect", this.connectHandler);
+        VirtualBitcoinContract.off("wrongNetwork", this.wrongNetworkHandler);
         VirtualBitcoinContract.off("Transfer", this.transferHandler);
         VirtualNewLibertyStandardContract.off("wrongNetwork", this.wrongNetworkHandler);
         VirtualNewLibertyStandardContract.off("Sell", this.sellHandler);
