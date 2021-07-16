@@ -31,8 +31,9 @@ export default class SaleList extends DomNode {
                             if (allowance !== undefined) {
                                 const realAmount = utils.parseUnits(amount, VirtualBitcoinContract.decimals);
                                 if (allowance.lt(realAmount) === true) {
-                                    alert("You need approve VBTC for Virtual New Liberty Standard.");
+                                    alert("You need to approve VBTC for Virtual New Liberty Standard.");
                                     await VirtualBitcoinContract.approve(VirtualNewLibertyStandardContract.address, realAmount);
+                                    alert("When approving transaction is complete, please sell it again for the same amount.");
                                 } else {
                                     const price = prompt("Please enter price (ETH).");
                                     if (price !== null) {

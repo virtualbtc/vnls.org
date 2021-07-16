@@ -18,7 +18,10 @@ export default class Sale extends DomNode {
             el("td", "="),
             el("td", `${utils.formatEther(price)} ETH`),
             el("td", el("a", "Buy", {
-                click: () => VirtualNewLibertyStandardContract.buy(saleId, price),
+                click: async () => {
+                    await VirtualNewLibertyStandardContract.buy(saleId, price);
+                    alert("A buying transaction has started. Please wait for the transaction to complete.");
+                },
             })),
             el("td", el("a", "Cancel", {
                 click: () => VirtualNewLibertyStandardContract.cancelSale(saleId),
