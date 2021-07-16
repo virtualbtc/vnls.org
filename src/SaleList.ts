@@ -149,12 +149,12 @@ export default class SaleList extends DomNode {
                     this.tbody.empty();
 
                     for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
-                        const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
-                        if (this.loadCount !== currentLoadCount) {
-                            break;
-                        } else if (price.eq(0) !== true) {
-                            this.addSale(BigNumber.from(saleId), seller, amount, price);
-                        }
+                        (async () => {
+                            const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
+                            if (this.loadCount === currentLoadCount && price.eq(0) !== true) {
+                                this.addSale(BigNumber.from(saleId), seller, amount, price);
+                            }
+                        })();
                     }
                 }
             }
