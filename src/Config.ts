@@ -1,4 +1,4 @@
-const INFURA_ID = "c76984765f1e41879c0e1cafacd7b134";
+const INFURA_ID = "96ce12f4a29c44699587732ebf110b75";
 
 export default {
 

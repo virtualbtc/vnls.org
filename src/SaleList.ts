@@ -14,7 +14,6 @@ export default class SaleList extends DomNode {
     private loading: DomNode | undefined;
     private pleaseConnect: DomNode | undefined;
     private tbody: DomNode;
-    private loadCount = 0;
 
     constructor() {
         super(".sale-list");
@@ -75,7 +74,6 @@ export default class SaleList extends DomNode {
     private connectHandler = () => {
         this.loadVBTCAmount();
         this.loadETHAmount();
-        this.loadSales();
     };
 
     private wrongNetworkHandler = () => {
@@ -127,9 +125,6 @@ export default class SaleList extends DomNode {
 
     private async loadSales() {
 
-        this.loadCount += 1;
-        const currentLoadCount = this.loadCount;
-
         this.loading?.delete();
         this.loading = el(".loading", "Loading...").appendTo(this);
 
@@ -137,28 +132,23 @@ export default class SaleList extends DomNode {
         this.pleaseConnect = undefined;
 
         const owner = await Wallet.loadAddress();
-        if (this.loadCount === currentLoadCount) {
+        if (owner === undefined) {
+            this.tbody.empty();
+            this.pleaseConnect = el("p", "Please Connect. ", el("a", "Connect", {
+                click: () => Wallet.connect(),
+            })).appendTo(this);
+        } else {
 
-            if (owner === undefined) {
-                this.tbody.empty();
-                this.pleaseConnect = el("p", "Please Connect. ", el("a", "Connect", {
-                    click: () => Wallet.connect(),
-                })).appendTo(this);
-            } else {
+            const count = await VirtualNewLibertyStandardContract.getSaleCount();
+            this.tbody.empty();
 
-                const count = await VirtualNewLibertyStandardContract.getSaleCount();
-                if (this.loadCount === currentLoadCount) {
-                    this.tbody.empty();
-
-                    for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
-                        (async () => {
-                            const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
-                            if (this.loadCount === currentLoadCount && price.eq(0) !== true) {
-                                this.addSale(BigNumber.from(saleId), seller, amount, price);
-                            }
-                        })();
+            for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
+                (async () => {
+                    const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
+                    if (price.eq(0) !== true) {
+                        this.addSale(BigNumber.from(saleId), seller, amount, price);
                     }
-                }
+                })();
             }
         }
 
