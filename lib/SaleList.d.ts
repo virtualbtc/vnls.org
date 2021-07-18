@@ -5,6 +5,7 @@ export default class SaleList extends DomNode {
     private loading;
     private pleaseConnect;
     private tbody;
+    private loaded;
     constructor();
     private connectHandler;
     private wrongNetworkHandler;

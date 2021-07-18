@@ -14,6 +14,7 @@ export default class SaleList extends DomNode {
     private loading: DomNode | undefined;
     private pleaseConnect: DomNode | undefined;
     private tbody: DomNode;
+    private loaded = false;
 
     constructor() {
         super(".sale-list");
@@ -74,6 +75,9 @@ export default class SaleList extends DomNode {
     private connectHandler = () => {
         this.loadVBTCAmount();
         this.loadETHAmount();
+        if (this.loaded !== true) {
+            this.loadSales();
+        }
     };
 
     private wrongNetworkHandler = () => {
@@ -150,6 +154,8 @@ export default class SaleList extends DomNode {
                     }
                 })();
             }
+
+            this.loaded = true;
         }
 
         this.loading?.delete();
