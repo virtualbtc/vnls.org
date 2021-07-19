@@ -10,9 +10,11 @@ export default {
     infuraId: INFURA_ID,
 
     // Kovan
+    //endpoint: `wss://kovan.infura.io/ws/v3/${INFURA_ID}`,
     //rpc: `https://kovan.infura.io/v3/${INFURA_ID}`,
 
     // Mainnet
+    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,
     rpc: `https://mainnet.infura.io/v3/${INFURA_ID}`,
 
     contracts: {
