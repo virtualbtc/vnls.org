@@ -6649,7 +6649,7 @@ eval("var isHexPrefixed = __webpack_require__(/*! is-hex-prefixed */ \"./node_mo
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst INFURA_ID = \"c76984765f1e41879c0e1cafacd7b134\";\r\nexports.default = {\r\n    chainId: 1,\r\n    infuraId: INFURA_ID,\r\n    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,\r\n    rpc: `https://mainnet.infura.io/v3/${INFURA_ID}`,\r\n    contracts: {\r\n        VirtualBitcoin: \"0x84e7ae4897b3847b67f212aff78bfbc5f700aa40\",\r\n        VirtualNewLibertyStandard: \"0x9C71228aAE840d19d3a4447071A7D6708C9046A9\",\r\n    },\r\n};\r\n\n\n//# sourceURL=webpack:///./src/Config.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst INFURA_ID = \"96ce12f4a29c44699587732ebf110b75\";\r\nexports.default = {\r\n    chainId: 1,\r\n    infuraId: INFURA_ID,\r\n    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,\r\n    rpc: `https://mainnet.infura.io/v3/${INFURA_ID}`,\r\n    contracts: {\r\n        VirtualBitcoin: \"0x84e7ae4897b3847b67f212aff78bfbc5f700aa40\",\r\n        VirtualNewLibertyStandard: \"0x9C71228aAE840d19d3a4447071A7D6708C9046A9\",\r\n    },\r\n};\r\n\n\n//# sourceURL=webpack:///./src/Config.ts?");
 
 /***/ }),
 
