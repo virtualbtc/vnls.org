@@ -3,9 +3,7 @@ export default class SaleList extends DomNode {
     private vbtcAmount;
     private ethAmount;
     private loading;
-    private pleaseConnect;
     private tbody;
-    private loaded;
     constructor();
     private connectHandler;
     private wrongNetworkHandler;

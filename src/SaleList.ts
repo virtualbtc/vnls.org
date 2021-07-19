@@ -12,9 +12,7 @@ export default class SaleList extends DomNode {
     private ethAmount: DomNode;
 
     private loading: DomNode | undefined;
-    private pleaseConnect: DomNode | undefined;
     private tbody: DomNode;
-    private loaded = false;
 
     constructor() {
         super(".sale-list");
@@ -57,7 +55,6 @@ export default class SaleList extends DomNode {
                 ),
                 this.tbody = el("tbody"),
             ),
-            el(".soldout", "All VBTC has been sold. Please wait for Uniswap listing."),
         );
 
         this.loadVBTCAmount();
@@ -75,9 +72,6 @@ export default class SaleList extends DomNode {
     private connectHandler = () => {
         this.loadVBTCAmount();
         this.loadETHAmount();
-        if (this.loaded !== true) {
-            this.loadSales();
-        }
     };
 
     private wrongNetworkHandler = () => {
@@ -106,7 +100,9 @@ export default class SaleList extends DomNode {
     private async loadVBTCAmount() {
         const owner = await Wallet.loadAddress();
         if (owner === undefined) {
-            this.vbtcAmount.empty().appendText("Load failed.");
+            this.vbtcAmount.empty().append(el("p", "Please Connect. ", el("a", "Connect", {
+                click: () => Wallet.connect(),
+            })));
         } else {
             const amount = utils.formatUnits(await VirtualBitcoinContract.balanceOf(owner), VirtualBitcoinContract.decimals);
             this.vbtcAmount.empty().appendText(amount);
@@ -132,30 +128,16 @@ export default class SaleList extends DomNode {
         this.loading?.delete();
         this.loading = el(".loading", "Loading...").appendTo(this);
 
-        this.pleaseConnect?.delete();
-        this.pleaseConnect = undefined;
+        const count = await VirtualNewLibertyStandardContract.getSaleCount();
+        this.tbody.empty();
 
-        const owner = await Wallet.loadAddress();
-        if (owner === undefined) {
-            this.tbody.empty();
-            this.pleaseConnect = el("p", "Please Connect. ", el("a", "Connect", {
-                click: () => Wallet.connect(),
-            })).appendTo(this);
-        } else {
-
-            const count = await VirtualNewLibertyStandardContract.getSaleCount();
-            this.tbody.empty();
-
-            for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
-                (async () => {
-                    const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
-                    if (price.eq(0) !== true) {
-                        this.addSale(BigNumber.from(saleId), seller, amount, price);
-                    }
-                })();
-            }
-
-            this.loaded = true;
+        for (let saleId = 0; saleId < count.toNumber(); saleId += 1) {
+            (async () => {
+                const [seller, amount, price] = await VirtualNewLibertyStandardContract.getSale(saleId);
+                if (price.eq(0) !== true) {
+                    this.addSale(BigNumber.from(saleId), seller, amount, price);
+                }
+            })();
         }
 
         this.loading?.delete();
