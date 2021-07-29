@@ -1,7 +1,7 @@
 import { DomNode, el } from "@hanul/skynode";
 import { BigNumber, utils } from "ethers";
-import VirtualBitcoinContract from "./contracts/VirtualBitcoinContract";
-import VirtualNewLibertyStandardContract from "./contracts/VirtualNewLibertyStandardContract";
+import VirtualBitcoinContract from "../contracts/VirtualBitcoinContract";
+import VirtualNewLibertyStandardContract from "../contracts/VirtualNewLibertyStandardContract";
 
 export default class Sale extends DomNode {
 

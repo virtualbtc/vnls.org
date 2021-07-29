@@ -217,33 +217,61 @@ a:visited:hover {
   padding: 0.5em;
   border-radius: 6px;
 }
-#exchange {
+#reference {
+  font-style: italic;
+}
+#exchange-v1 {
   font-family: Times;
 }
-#exchange .sale-list .eth-amount {
-  margin-bottom: 10px;
-}
-#exchange .sale-list table {
+#exchange-v1 .sale-list table {
   margin-top: 5px;
   border-spacing: 2px;
   border-collapse: separate;
 }
-#exchange .sale-list table tr:nth-child(even) {
+#exchange-v1 .sale-list table tr:nth-child(even) {
   background: #ebebeb;
 }
-#exchange .sale-list table tr:nth-child(odd) {
+#exchange-v1 .sale-list table tr:nth-child(odd) {
   background: #c7c7c7;
 }
-#exchange .sale-list table td {
+#exchange-v1 .sale-list table td {
   padding: 2px 4px;
 }
-#exchange .sale-list table td.seller {
+#exchange-v1 .sale-list table td.seller {
   font-size: 12px;
 }
-#exchange .soldout {
-  margin-top: 20px;
+#exchange-v2 h3 {
+  margin-top: 18px;
+  margin-bottom: 8px;
+  font-size: 125%;
+  font-weight: normal;
 }
-#reference {
-  font-style: italic;
+#exchange-v2 .buy-order-list,
+#exchange-v2 .sell-order-list {
+  font-family: Times;
+}
+#exchange-v2 .buy-order-list table,
+#exchange-v2 .sell-order-list table {
+  margin-top: 5px;
+  border-spacing: 2px;
+  border-collapse: separate;
+}
+#exchange-v2 .buy-order-list table tr:nth-child(even),
+#exchange-v2 .sell-order-list table tr:nth-child(even) {
+  background: #ebebeb;
+}
+#exchange-v2 .buy-order-list table tr:nth-child(odd),
+#exchange-v2 .sell-order-list table tr:nth-child(odd) {
+  background: #c7c7c7;
+}
+#exchange-v2 .buy-order-list table td,
+#exchange-v2 .sell-order-list table td {
+  padding: 2px 4px;
+}
+#exchange-v2 .buy-order-list table td.buyer,
+#exchange-v2 .sell-order-list table td.buyer,
+#exchange-v2 .buy-order-list table td.seller,
+#exchange-v2 .sell-order-list table td.seller {
+  font-size: 12px;
 }
 

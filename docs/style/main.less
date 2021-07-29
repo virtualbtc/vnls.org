@@ -61,42 +61,9 @@ a:visited:hover {
     border-radius   : 6px;
 }
 
-#exchange {
-    font-family: Times;
-
-    .sale-list {
-        .eth-amount {
-            margin-bottom: 10px;
-        }
-
-        table {
-            margin-top     : 5px;
-            border-spacing : 2px;
-            border-collapse: separate;
-
-            tr:nth-child(even) {
-                background: #ebebeb;
-            }
-
-            tr:nth-child(odd) {
-                background: #c7c7c7;
-            }
-
-            td {
-                padding: 2px 4px;
-
-                &.seller {
-                    font-size: 12px;
-                }
-            }
-        }
-    }
-
-    .soldout {
-        margin-top: 20px;
-    }
-}
-
 #reference {
     font-style: italic;
 }
+
+@import "exchange-v1.less";
+@import "exchange-v2.less";

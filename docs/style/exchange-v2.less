@@ -1,0 +1,37 @@
+#exchange-v2 {
+
+    h3 {
+        margin-top   : 18px;
+        margin-bottom: 8px;
+        font-size    : 125%;
+        font-weight  : normal;
+    }
+
+    .buy-order-list,
+    .sell-order-list {
+        font-family: Times;
+
+        table {
+            margin-top     : 5px;
+            border-spacing : 2px;
+            border-collapse: separate;
+
+            tr:nth-child(even) {
+                background: #ebebeb;
+            }
+
+            tr:nth-child(odd) {
+                background: #c7c7c7;
+            }
+
+            td {
+                padding: 2px 4px;
+
+                &.buyer,
+                &.seller {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
