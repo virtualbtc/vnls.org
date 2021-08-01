@@ -7,8 +7,8 @@ import SellOrderList from "./exchange-v2/SellOrderList";
 const balance = new DomNode(document.getElementById("balance")!);
 balance.append(new Balance());
 
-const exchangeV1 = new DomNode(document.getElementById("exchange-v1")!);
-exchangeV1.append(new SaleList());
+//const exchangeV1 = new DomNode(document.getElementById("exchange-v1")!);
+//exchangeV1.append(new SaleList());
 
 const exchangeV2 = new DomNode(document.getElementById("exchange-v2")!);
 exchangeV2.append(
