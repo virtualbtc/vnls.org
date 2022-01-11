@@ -6660,7 +6660,7 @@ eval("\r\nvar __importDefault = (this && this.__importDefault) || function (mod)
 /***/ ((__unused_webpack_module, exports) => {
 
 "use strict";
-eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst INFURA_ID = \"96ce12f4a29c44699587732ebf110b75\";\r\nexports.default = {\r\n    chainId: 1,\r\n    infuraId: INFURA_ID,\r\n    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,\r\n    contracts: {\r\n        VirtualBitcoin: \"0x84e7ae4897b3847b67f212aff78bfbc5f700aa40\",\r\n        VirtualNewLibertyStandard: \"0x9C71228aAE840d19d3a4447071A7D6708C9046A9\",\r\n        VNLSBuyOrderBook: \"0x14e90440d54014B8A85ff9F25734B1f2c51d16cc\",\r\n        VNLSSellOrderBook: \"0x18177A4Ee92E71A835df362acAb125232D1ee7f0\",\r\n    },\r\n};\r\n\n\n//# sourceURL=webpack:///./src/Config.ts?");
+eval("\r\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\r\nconst INFURA_ID = \"96ce12f4a29c44699587732ebf110b75\";\r\nexports.default = {\r\n    chainId: 1,\r\n    infuraId: INFURA_ID,\r\n    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,\r\n    contracts: {\r\n        VirtualBitcoin: \"0x84e7ae4897b3847b67f212aff78bfbc5f700aa40\",\r\n        VirtualNewLibertyStandard: \"0x9C71228aAE840d19d3a4447071A7D6708C9046A9\",\r\n        VNLSBuyOrderBook: \"0x14e90440d54014B8A85ff9F25734B1f2c51d16cc\",\r\n        VNLSSellOrderBook: \"0x36fBC9482449BeFE6F8c5d7d802Cae806c6826bf\",\r\n    },\r\n};\r\n\n\n//# sourceURL=webpack:///./src/Config.ts?");
 
 /***/ }),
 
