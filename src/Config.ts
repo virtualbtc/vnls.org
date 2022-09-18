@@ -1,5 +1,3 @@
-const INFURA_ID = "96ce12f4a29c44699587732ebf110b75";
-
 export default {
 
     // Kovan
@@ -8,13 +6,7 @@ export default {
     // Mainnet
     chainId: 1,
 
-    infuraId: INFURA_ID,
-
-    // Kovan
-    //endpoint: `wss://kovan.infura.io/ws/v3/${INFURA_ID}`,
-
-    // Mainnet
-    endpoint: `wss://mainnet.infura.io/ws/v3/${INFURA_ID}`,
+    rpc: "https://cloudflare-eth.com",
 
     contracts: {
 

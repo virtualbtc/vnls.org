@@ -4,12 +4,19 @@ import Config from "../Config";
 
 class NetworkProvider extends EventContainer {
 
-    public provider: ethers.providers.WebSocketProvider;
+    private ethereum: any | undefined = (window as any).ethereum;
+    private get existsInjectedProvider() { return this.ethereum !== undefined; }
+
+    public provider: ethers.providers.JsonRpcProvider;
     public signer: ethers.providers.JsonRpcSigner;
 
     constructor() {
         super();
-        this.provider = new ethers.providers.WebSocketProvider(Config.endpoint);
+        if (this.existsInjectedProvider === true) {
+            this.provider = new ethers.providers.Web3Provider(this.ethereum);
+        } else {
+            this.provider = new ethers.providers.JsonRpcProvider(Config.rpc);
+        }
         this.signer = this.provider.getSigner(ethers.constants.AddressZero);
     }
 
